@@ -1,70 +1,77 @@
 # WeChatMsg
 
-`WeChatMsg` is a Windows desktop tool built with `PyQt5` for viewing, decrypting, exporting, and analyzing locally stored WeChat chat data.
+`WeChatMsg` 是一个基于 `PyQt5` 的 Windows 桌面工具，用于读取、解密、浏览、导出和分析本机微信聊天数据。
 
-## Features
+## 功能简介
 
-- Read local WeChat data on Windows
-- Extract account and database information from a logged-in WeChat client
-- Decrypt local message databases
-- View chats and contacts in a desktop UI
-- Export records to `CSV`, `TXT`, and `HTML`
-- Generate simple chat analysis reports
+- 获取当前已登录微信账号的本地信息
+- 读取并解密微信数据库
+- 桌面界面浏览聊天记录和联系人
+- 导出聊天记录到 `CSV`、`TXT`、`HTML`
+- 生成简单的聊天分析与词云页面
 
-## Project Structure
+## 项目结构
 
 ```text
 app/
-  analysis/      Chat analysis
-  DataBase/      Database access and export logic
-  decrypt/       WeChat info detection and decryption
-  ui/            PyQt desktop interface
-  util/          Utility helpers
-  web_ui/        HTML report pages
-resource/        Static render resources
-main.py          Application entry point
+  analysis/      聊天分析
+  DataBase/      数据库读取、合并、导出
+  decrypt/       微信信息提取与解密
+  ui/            PyQt 桌面界面
+  util/          工具函数
+  web_ui/        HTML 报告页面
+resource/        渲染资源
+main.py          程序入口
 ```
 
-## Requirements
+## 运行环境
 
-- Windows
-- Python `3.10` to `3.13` recommended
-- Desktop WeChat installed and logged in
+- 操作系统：`Windows`
+- Python：推荐 `3.10` 到 `3.13`
+- 需要已安装并登录 Windows 版微信
 
-## Install
+## 安装依赖
 
 ```powershell
 pip install -r requirements.txt
 ```
 
-## Run
+## 启动项目
 
 ```powershell
 python main.py
 ```
 
-## Build EXE
+## 打包 EXE
 
-Example build command:
+示例命令：
 
 ```powershell
 py -m PyInstaller --noconfirm --clean --windowed --name WeChatMsg --paths . --add-data "app;app" --add-data "resource;resource" --collect-data jieba --collect-data pyecharts main.py
 ```
 
-After packaging, the executable is generated under:
+打包完成后可执行文件位于：
 
 ```text
 dist/WeChatMsg/WeChatMsg.exe
 ```
 
-Keep the whole `dist/WeChatMsg` directory together when distributing the app.
+分发时请保留整个 `dist/WeChatMsg` 目录，不要只单独复制 `exe`。
 
-## Notes
+## 使用说明
 
-- Run the program with appropriate permissions if WeChat process information cannot be read.
-- Generated databases and exported files may be written under the project directory.
-- Some dependencies can be sensitive to Python version changes. If packaging fails on newer Python versions, use Python `3.10` to `3.13`.
+1. 先登录 PC 版微信
+2. 运行程序并获取微信信息
+3. 选择微信数据目录或使用自动识别结果
+4. 执行解密
+5. 在界面中浏览聊天记录，或导出聊天数据
 
-## Disclaimer
+## 注意事项
 
-This project is intended for viewing and managing your own local WeChat data only. Do not use it for unauthorized access, collection, or distribution of other people's data.
+- 如果无法读取微信进程信息，可尝试使用管理员权限运行
+- 解密后的数据库和导出文件会写入项目目录下的相关文件夹
+- 某些依赖对 Python 新版本兼容性较敏感，若遇到安装或打包问题，优先使用 `Python 3.10` 到 `3.13`
+
+## 免责声明
+
+本项目仅用于查看和管理你自己的本地微信数据。禁止用于任何未授权的数据获取、传播或其他违法用途。使用本项目造成的后果由使用者自行承担。
